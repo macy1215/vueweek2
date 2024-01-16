@@ -30,14 +30,4 @@ createApp({
 }).mount('#app')
 
 
-//3.取得管理員才能看得產品列表
-// loginBtn.addEventListener('click',()=>{   
-//     axios.get(`${url}/api/${path}/admin/products/all`) 
-//       .then((res)=>{
-//         console.log(res);
-//       })
-//       .catch((err)=>{
-//         console.log(err)
-//       })
-// })
 
