@@ -4,8 +4,8 @@ createApp({
   data(){
     return{
       user:{
-        username: 'mjmj3794@gmail.com',
-        password: 'Cc51845184'
+        username: "",
+        password: "",
       }
     }
   },
@@ -13,15 +13,13 @@ createApp({
     login(){
       const url = `https://vue3-course-api.hexschool.io/v2`;
       const path = 'maciw2';
-      console.log(this.user);
 
       axios.post(`${url}/admin/signin`,this.user)
       .then((res)=>{
-        console.log(res);
         const { token , expired} = res.data //解構 將token 跟時間抓到
         console.log(token,expired);
         document.cookie = `hexVueToken=${token}; expires=${expired}`;
-        //window.location= 'productlist.html'
+        window.location= 'productlist.html'
       })
       .catch((err)=>{
         console.dir(err)
