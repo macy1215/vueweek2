@@ -5,27 +5,44 @@ createApp({
         return{
             apiUrl: `https://vue3-course-api.hexschool.io/v2`,
             path:'maciw2',
+            products:[],
+            tempProduct:{},
         }
     },
     methods: {
        checkAdmin(){
-            axios.post(`${this.apiUrl}/api/user/check`) 
-            .then((res)=>{
-                console.log(res);
-            })
-            .catch((err)=>{
+                axios.post(`${this.apiUrl}/api/user/check`) 
+                .then((res)=>{
+                    this.getData();
+                })
+                .catch((err)=>{
+                    alert(err.response.data.message);
+                    window.location = 'login.html';
+                })
+       },
+       getData(){
+            axios.get(`${this.apiUrl}/api/${this.path}/admin/products`) 
+                .then((res)=>{
+                this.products=res.data.products;
+                console.log(this.products);
+                })
+                .catch((err)=>{
                 alert(err.response.data.message);
-                window.location = 'login.html';
-            })
+                })
+       },
+       showProduct(item){
+        this.tempProduct=item;
        }
     },
     mounted(){
         //token
-        const token = document.cookie.split('; ').find((row) => row.startsWith('hexVueToken='))
-        ?.split('=')[1];
-        axios.defaults.headers.common['Authorization'] = token
+        // const token = document.cookie.split('; ').find((row) => row.startsWith('hexVueToken='))
+        // ?.split('=')[1];
+        // axios.defaults.headers.common['Authorization'] = token
+        const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexVueToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
+        axios.defaults.headers.common.Authorization = token;
     
-        this.checkAdmin()
+        this.checkAdmin();
     }
 }).mount('#app')
 
