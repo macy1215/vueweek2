@@ -8,9 +8,9 @@ const app = createApp({
         return{
             apiUrl: `https://vue3-course-api.hexschool.io/v2`,
             path:'maciw2',
-            products:[],
-            tempProduct:{},
-        }
+            products:[], // 資料集
+            tempProduct:{},//暫存區
+        };
     },
     methods: {
        checkAdmin(){
@@ -32,6 +32,12 @@ const app = createApp({
                 .catch((err)=>{
                 alert(err.response.data.message);
                 })
+       },
+       addImgurl(){ 
+            console.log('新增圖片')
+        },
+       removeImgurl(){
+            console.log('刪除圖片')
        },
        showProduct(item){
         this.tempProduct=item;
