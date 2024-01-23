@@ -1,5 +1,8 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 
+let myModal = '';
+
+
 const app = createApp({
     data(){
         return{
@@ -32,7 +35,13 @@ const app = createApp({
        },
        showProduct(item){
         this.tempProduct=item;
-       }
+       },
+       openModal(){
+        myModal.show();
+       },
+       saveModal(){
+        myModal.hide();
+       },
     },
     mounted(){
         //token
@@ -43,6 +52,7 @@ const app = createApp({
         axios.defaults.headers.common.Authorization = token;
     
         this.checkAdmin();
+        myModal=new bootstrap.Modal(document.querySelector('#productModal'));
     }
 });
 
