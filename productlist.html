@@ -9,7 +9,7 @@
     <title>產品頁</title>
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <div class="container">
           <div class="row py-3">
             <div class="col-md-6">
@@ -81,9 +81,9 @@
           </div>
         </div>
 
-    </div>
+    </div> -->
 
-    <div id="app2">
+    <div id="app">
       <div class="container">
         <div class="text-end mt-4">
           <button class="btn btn-primary">
@@ -112,13 +112,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td class="text-end"></td>
-              <td class="text-end"></td>
-              <td>
-                <span class="text-success">啟用</span>
+            <tr  v-for='(item,key) in products' :key="item.id" >
+              <td width="150">{{item.category}}</td>
+              <td width="150">{{item.title}}</td>
+              <td width="120">
+                {{item.origin_price}}
+              </td>
+              <td width="120">
+                {{item.price}}
+              </td>
+              <td width="150">
+                <span class="text-success" v-if="products.is_enabled">啟用</span>
                 <span>未啟用</span>
               </td>
               <td>

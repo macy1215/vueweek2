@@ -1,6 +1,6 @@
 import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js';
 
-createApp({
+const app = createApp({
     data(){
         return{
             apiUrl: `https://vue3-course-api.hexschool.io/v2`,
@@ -17,7 +17,7 @@ createApp({
                 })
                 .catch((err)=>{
                     alert(err.response.data.message);
-                    window.location = 'login.html';
+                    //window.location = 'login.html';
                 })
        },
        getData(){
@@ -44,7 +44,9 @@ createApp({
     
         this.checkAdmin();
     }
-}).mount('#app')
+});
+
+app.mount('#app')
 
 
 //3.取得管理員才能看得產品列表
