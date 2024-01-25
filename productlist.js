@@ -37,12 +37,6 @@ const app = createApp({
                 alert(err.response.data.message);
                 })
        },
-       addImgurl(){ 
-            console.log('新增圖片')
-        },
-       removeImgurl(key){
-            console.log(key)
-       },
        showProduct(item){
         this.tempProduct=item;
        },
