@@ -30,11 +30,10 @@ const app = createApp({
        getData(){
             axios.get(`${this.apiUrl}/api/${this.path}/admin/products`) 
                 .then((res)=>{
-                this.products=res.data.products;
-                console.log(this.products);
+                    this.products=res.data.products;
                 })
                 .catch((err)=>{
-                alert(err.response.data.message);
+                    alert(err.response.data.message);
                 })
        },
        showProduct(item){
@@ -53,7 +52,7 @@ const app = createApp({
             this.isNew=false;
             myModal.show();
         }else if(isNew === 'delete'){
-            this.tempProduct={...item};
+            //this.tempProduct={...item};
             delProductModal.show();//跳出警告視窗
         }
 
@@ -76,7 +75,6 @@ const app = createApp({
                 })
                 .catch((err)=>{
                     alert(err.data.message);
-                    console.log(err);
                 })
        },
        createImages(){
@@ -85,9 +83,7 @@ const app = createApp({
          this.tempProduct.imagesUrl.push('');
        },
        removeImgurl(){
-        
         const url = `${this.apiUrl}/api/${this.path}/admin/product/${this.tempProduct.id}`;
-        
         axios.delete (url,{data:this.tempProduct})
                 .then((res)=>{
                     alert(res.data.message);
@@ -96,7 +92,6 @@ const app = createApp({
                 })
                 .catch((err)=>{
                     alert(err.data.message);
-                    console.log(err);
                 })
        }
     },
@@ -117,13 +112,3 @@ const app = createApp({
 app.mount('#app')
 
 
-//3.取得管理員才能看得產品列表
-// loginBtn.addEventListener('click',()=>{   
-//     axios.get(`${url}/api/${path}/admin/products/all`) 
-//       .then((res)=>{
-//         console.log(res);
-//       })
-//       .catch((err)=>{
-//         console.log(err)
-//       })
-// })
